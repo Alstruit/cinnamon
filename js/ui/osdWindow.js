@@ -73,6 +73,9 @@ class OsdWindow extends Clutter.Actor {
         });
         this._vbox.add_child(this._level);
 
+        this._percentageLabel = new St.Label();
+        this._vbox.add_child(this._percentageLabel);
+
         this._hideTimeoutId = 0;
         this._reset();
         Main.uiGroup.add_child(this);
@@ -99,6 +102,8 @@ class OsdWindow extends Clutter.Actor {
                 });
             else
                 this._level.value = value;
+
+            this._percentageLabel.text = Math.round(value * 100) + '%';
         }
     }
 
@@ -157,6 +162,7 @@ class OsdWindow extends Clutter.Actor {
         this.setLabel(null);
         this.setMaxLevel(null);
         this.setLevel(null);
+        this._percentageLabel.text = '';
     }
 });
 
